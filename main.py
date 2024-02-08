@@ -47,12 +47,13 @@ def search(item):
 
 
 def wait_item():
-    no_item_path = "assets/o_item.PNG"
-    no_item = pyautogui.locateOnScreen(no_item_path, region=item_found_reg)
-    while no_item:
-        no_item = pyautogui.locateOnScreen(no_item_path, region=item_found_reg)
-        print("Item Not Found")
+    item_found = ocr_this(item_found_reg)
+    while not item_found:
+        print("item NOT FOUND")     #test
+        item_found = ocr_this(item_found_reg)
+    print("Item Found")     #test
     return True
+
     
 def open_item():
     item_found = wait_item()
@@ -76,7 +77,9 @@ def ocr_this(reg):
 
 
 if __name__ == "__main__":
-    # print(ocr_this(first_item_found))
+    # search(items[0])
+    # wait_item()
+
     pass
 
 
