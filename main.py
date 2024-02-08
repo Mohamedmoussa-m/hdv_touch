@@ -31,12 +31,22 @@ search_bar = (230, 197)
 first_item_found = (186, 394)
 first_price_reg = (820, 388, 200, 48)
 second_price_reg = (819, 465, 203, 50)
+item_found_reg = (41, 366, 81, 50)
+
+# ASSETS
+no_item = r'C:\Users\moise\Documents\GitHub\bot_touch\bot_hdv\assets\no_item.PNG'
 
 
 def search(item):
     pyautogui.click(search_bar, clicks=2, interval=.1)
     time.sleep(.3)
     keyboard.write(item)
+    keyboard.press_and_release('enter')
 
 
-search('bottes allister')
+def wait_item():
+    no_item = pyautogui.locateOnScreen(no_item, region=item_found_reg)
+    while no_item:
+        no_item = pyautogui.locateOnScreen(no_item, region=item_found_reg)
+    
+    
