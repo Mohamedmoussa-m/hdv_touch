@@ -23,10 +23,11 @@ check_item(item):
 
 
 '''
+# Variables
+items = ["solomonk"]
 
 
-
-# VARIABLES
+# CONSTANTS
 search_bar = (230, 197)
 first_item_found = (186, 394)
 first_price_reg = (820, 388, 200, 48)
@@ -34,21 +35,32 @@ second_price_reg = (819, 465, 203, 50)
 item_found_reg = (41, 366, 81, 50)
 
 # ASSETS
-no_item = r'C:\Users\moise\Documents\GitHub\bot_touch\bot_hdv\assets\no_item.PNG'
+
 
 
 def search(item):
-    pyautogui.click(search_bar, clicks=2, interval=.1)
+    pyautogui.click(search_bar, clicks=2, interval=.5)
     time.sleep(.3)
     keyboard.write(item)
     keyboard.press_and_release('enter')
 
 
 def wait_item():
-    no_item = pyautogui.locateOnScreen(no_item, region=item_found_reg)
+    no_item_path = "assets/o_item.PNG"
+    no_item = pyautogui.locateOnScreen(no_item_path, region=item_found_reg)
     while no_item:
-        no_item = pyautogui.locateOnScreen(no_item, region=item_found_reg)
+        no_item = pyautogui.locateOnScreen(no_item_path, region=item_found_reg)
         print("Item Not Found")
     return True
     
+def open_item():
+    item_found = wait_item()
+    if item_found:
+        time.sleep(.1)
+        pyautogui.click(first_item_found)
+
+if __name__ == "__main__":
+    search(items[0])
+    open_item()
+
 
