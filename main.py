@@ -48,5 +48,7 @@ def wait_item():
     no_item = pyautogui.locateOnScreen(no_item, region=item_found_reg)
     while no_item:
         no_item = pyautogui.locateOnScreen(no_item, region=item_found_reg)
+        print("Item Not Found")
+    return True
     
-    
+
