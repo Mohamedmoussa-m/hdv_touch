@@ -64,7 +64,9 @@ def ocr_this(reg):
     roi = pyautogui.screenshot(region=reg)
     custom_config = r'--oem 3 --psm 3'
     text = pytesseract.image_to_string(roi, config=custom_config)
-    # print(text)
+    if len(text) == 0:
+        return False
+    # print(text)   #test
     return text
 
 
@@ -74,7 +76,7 @@ def ocr_this(reg):
 
 
 if __name__ == "__main__":
-    # ocr_this(first_item_found)
+    # print(ocr_this(first_item_found))
     pass
 
 
