@@ -2,6 +2,7 @@ import pyautogui
 from pynput import keyboard
 import keyboard
 import time
+import pytesseract
 
 
 '''
@@ -29,7 +30,7 @@ items = ["solomonk"]
 
 # CONSTANTS
 search_bar = (230, 197)
-first_item_found = (186, 394)
+first_item_found = (85, 379, 323, 27)
 first_price_reg = (820, 388, 200, 48)
 second_price_reg = (819, 465, 203, 50)
 item_found_reg = (41, 366, 81, 50)
@@ -59,8 +60,21 @@ def open_item():
         time.sleep(.1)
         pyautogui.click(first_item_found)
 
+def ocr_this(reg):
+    roi = pyautogui.screenshot(region=reg)
+    custom_config = r'--oem 3 --psm 3'
+    text = pytesseract.image_to_string(roi, config=custom_config)
+    # print(text)
+    return text
+
+
+
+
+
+
+
 if __name__ == "__main__":
-    search(items[0])
-    open_item()
+    # ocr_this(first_item_found)
+    pass
 
 
